@@ -22,7 +22,6 @@ import AlbumList from "../containers/AlbumList";
 const { width, height } = Dimensions.get("window");
 const imageW = width * 0.55;
 const imageH = imageW * 1.5;
-const imageH = imageW * 1.5;
 
 const imgData = [
   "https://www.neomiannay.fr/php-laylow/bio-img/image1.png",
