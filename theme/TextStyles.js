@@ -15,7 +15,8 @@ export default {
     marginVertical: 24,
   },
   h2: {
-    fontSize: 24,
+    fontSize: 22,
+    textAlign: 'center',
     fontWeight: '700',
     color: Colors.blanc,
     marginVertical: 16,
@@ -33,9 +34,24 @@ export default {
     marginVertical: 8,
     fontFamily: "Futura-Book",
   },
+  underText: {
+    textAlign: 'center',
+    fontSize: 12,
+    fontWeight: '600',
+    color: '#ffffff',
+    opacity: 0.64,
+  },
+  bottomText: {
+    fontSize: 13,
+    paddingVertical: 2,
+    color: '#ffffff',
+    opacity: 0.64,
+  },
   imgAlbum: {
+    borderRadius: 10,
     marginTop: 16,
-    width: 350,
-    height: 350,
+    marginLeft: 26,
+    width: 300,
+    height: 300,
   }
 };
