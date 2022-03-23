@@ -15,15 +15,17 @@ import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import { Padding } from "../theme/Spacing";
 
+const Images = [
+  require("../assets/img/albums/mercy.jpg"),
+  require("../assets/img/albums/digitalova.jpg"),
+  require("../assets/img/albums/raw.jpg"),
+  require("../assets/img/albums/raw-z.jpg"),
+  require("../assets/img/albums/trinity.jpg"),
+  require("../assets/img/albums/mr-anderson.jpg"),
+];
+
 export default function Album(props) {
-  const Images = [
-    require("../assets/img/albums/mercy.jpg"),
-    require("../assets/img/albums/digitalova.jpg"),
-    require("../assets/img/albums/raw.jpg"),
-    require("../assets/img/albums/raw-z.jpg"),
-    require("../assets/img/albums/trinity.jpg"),
-    require("../assets/img/albums/mr-anderson.jpg"),
-  ];
+  
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -58,10 +60,11 @@ export default function Album(props) {
           <Button title="Go back" onPress={() => props.navigation.goBack()} />
           <Image style={TextStyles.imgAlbum} source={Images[props.route.params.id - 1]} />
           <Text style={TextStyles.h2}>{data.titre}</Text>
-          <Text style={TextStyles.h3}>Nombre de pistes : {data.pistes}</Text>
-          <Text style={TextStyles.h3}>Durée : {data.duree}</Text>
-          <Text style={TextStyles.h3}>Date de sortie : {data.date}</Text>
-          <Text style={TextStyles.h3}>{data.description}</Text>
+          <Text style={TextStyles.underText}>{data.description}</Text>
+          <Text style={TextStyles.underText}>HIP-HOP/RAP · {data.annee}</Text>
+          <Text style={TextStyles.bottomText}>{data.date}</Text>
+          <Text style={TextStyles.bottomText}>{data.pistes} morceaux, {data.duree}</Text>
+          <Text style={TextStyles.bottomText}>{data.label}</Text>
           {/* <FlatList
             data={data.musiques}
             renderItem={Musique}
