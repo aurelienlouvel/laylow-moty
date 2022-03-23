@@ -12,16 +12,16 @@ import {
   FlatList,
   StatusBar,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import { Padding, Margin } from "../theme/Spacing";
 import AlbumList from "../containers/AlbumList";
 
-
 const { width, height } = Dimensions.get("window");
 const imageW = width * 0.55;
+const imageH = imageW * 1.5;
 const imageH = imageW * 1.5;
 
 const imgData = [
@@ -56,26 +56,25 @@ export default function Accueil() {
 
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
-
   return (
-    <ScrollView
-      style={StyleSheet.compose(BackgroundColor(Colors.noir))}
-    >
+    <ScrollView style={StyleSheet.compose(BackgroundColor(Colors.noir))}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
         <>
-        <Text style={{
-          fontFamily: "Cloister",
-          fontSize: 64,
-          color: "#970203",
-          textAlign: "center",
-          marginTop: 20
-        }}>
+          <Text
+            style={{
+              fontFamily: "Cloister",
+              fontSize: 64,
+              color: "#970203",
+              textAlign: "center",
+              marginTop: 20,
+            }}
+          >
             moty
-        </Text>
+          </Text>
 
-        <View style={StyleSheet.absoluteFillObject}>
+          <View style={StyleSheet.absoluteFillObject}>
             {imgData.map((image, index) => {
               const inputRange = [
                 (index - 1) * width,
@@ -84,7 +83,7 @@ export default function Accueil() {
               ];
               const opacity = scrollX.interpolate({
                 inputRange,
-                outputRange: [0, .5, 0],
+                outputRange: [0, 0.5, 0],
               });
               return (
                 <Animated.Image
@@ -97,7 +96,7 @@ export default function Accueil() {
             })}
           </View>
 
-        <Animated.FlatList
+          <Animated.FlatList
             style={{ paddingVertical: 20 }}
             data={imgData}
             onScroll={Animated.event(
@@ -116,7 +115,7 @@ export default function Accueil() {
                     justifyContent: "center",
                     alignItems: "center",
                     shadowColor: "#000",
-                    shadowOpacity: .1,
+                    shadowOpacity: 0.1,
                     shadowOffset: {
                       width: 0,
                       height: 0,
@@ -138,19 +137,19 @@ export default function Accueil() {
             }}
           />
 
-        <View>
-          <View style={Padding(32, "x")}>
-            <Text style={TextStyles.headTitle}>{data.pseudo_artiste}</Text>
+          <View>
+            <View style={Padding(32, "x")}>
+              <Text style={TextStyles.headTitle}>{data.artiste}</Text>
+            </View>
+            <View style={Padding(32, "x")}>
+              <Text style={TextStyles.h2}>Il était une fois ...</Text>
+              <Text style={TextStyles.p}>{data.biographie}</Text>
+            </View>
+            <View style={Padding(32, "l")}>
+              <Text style={TextStyles.h2}>Discographie</Text>
+              <AlbumList />
+            </View>
           </View>
-          <View style={Padding(32, "x")}>
-            <Text style={TextStyles.h2}>Il était une fois ...</Text>
-            <Text style={TextStyles.p}>{data.texte_biographie}</Text>
-          </View>
-          <View style={Padding(32, "l")}>
-            <Text style={TextStyles.h2}>Discographie</Text>
-            <AlbumList />
-          </View>
-        </View>
         </>
       )}
     </ScrollView>
