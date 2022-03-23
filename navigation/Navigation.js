@@ -7,15 +7,31 @@ import {
 } from "./ScreenNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { BlurView } from 'expo-blur';
 
 const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
   return (
     <NavigationContainer>
+      {/* <BlurView
+      style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+      tint="light"
+      intensity={100}
+    > */}
       <Tab.Navigator
         initialRouteName="AccueilTab"
         screenOptions={({ route }) => ({
+          tabBarStyle: {
+            backgroundColor: '#000000',
+            borderTopWidth: 0,
+            height: '8%',
+          },
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
@@ -44,8 +60,9 @@ export default function Navigation() {
               );
             }
           },
-          tabBarActiveTintColor: "#970203",
-          tabBarInactiveTintColor: "#202020",
+          
+          tabBarActiveTintColor: "#ffffff",
+          tabBarInactiveTintColor: "#ffffff",
           tabBarShowLabel: false,
           headerShown: false,
         })}
@@ -54,6 +71,7 @@ export default function Navigation() {
         <Tab.Screen name="ConcertsTab" component={ConcertsNavigator} />
         <Tab.Screen name="ForumTab" component={ForumNavigator} />
       </Tab.Navigator>
+    {/* </BlurView> */}
     </NavigationContainer>
   );
 }
