@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <BlurView
+      {/* <BlurView
       style={{
         position: 'absolute',
         bottom: 0,
@@ -23,14 +23,13 @@ export default function Navigation() {
       }}
       tint="light"
       intensity={100}
-    >
+    > */}
       <Tab.Navigator
         initialRouteName="AccueilTab"
         screenOptions={({ route }) => ({
           tabBarStyle: {
-            borderTopColor: '#666666',
-            backgroundColor: 'transparent',
-            borderTopWidth: 1,
+            backgroundColor: '#000000',
+            borderTopWidth: 0,
             height: '8%',
           },
           tabBarIcon: ({ focused, color, size }) => {
@@ -72,7 +71,7 @@ export default function Navigation() {
         <Tab.Screen name="ConcertsTab" component={ConcertsNavigator} />
         <Tab.Screen name="ForumTab" component={ForumNavigator} />
       </Tab.Navigator>
-    </BlurView>
+    {/* </BlurView> */}
     </NavigationContainer>
   );
 }

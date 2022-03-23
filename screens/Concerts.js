@@ -1,5 +1,4 @@
 import React from "react";
-import MapView, { Marker } from "react-native-maps";
 import { ScrollView, StyleSheet, Text, View, Dimensions } from "react-native";
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
