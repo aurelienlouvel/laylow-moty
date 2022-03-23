@@ -33,4 +33,9 @@ export default {
     marginVertical: 8,
     fontFamily: "Futura-Book",
   },
+  imgAlbum: {
+    marginTop: 16,
+    width: 350,
+    height: 350,
+  }
 };

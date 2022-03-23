@@ -56,7 +56,7 @@ export default function Album(props) {
       ) : (
         <View>
           <Button title="Go back" onPress={() => props.navigation.goBack()} />
-          <Image source={Images[props.route.params.id]} />
+          <Image style={TextStyles.imgAlbum} source={Images[props.route.params.id - 1]} />
           <Text style={TextStyles.h2}>{data.titre}</Text>
           <Text style={TextStyles.h3}>Nombre de pistes : {data.pistes}</Text>
           <Text style={TextStyles.h3}>Durée : {data.duree}</Text>
