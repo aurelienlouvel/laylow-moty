@@ -8,7 +8,7 @@ import BottomSheet from "../components/BottomSheet";
 
 export default function Concerts() {
   return (
-    <ScrollView>
+    <ScrollView style={{ flex: 1 }}>
       <View style={Styles.container}>
         <Map />
         <BottomSheet />
