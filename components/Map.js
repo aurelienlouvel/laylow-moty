@@ -3,7 +3,17 @@ import { StyleSheet, Dimensions, Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 export default function Map() {
-  const [mapRegion, setRegion] = useState(null);
+  const initialRegion = {
+    latitude: 48.8566,
+    longitude: 2.3522,
+    latitudeDelta: 0.02,
+    longitudeDelta: 0.02,
+  };
+
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [region, setRegion] = React.useState(initialRegion);
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -11,48 +21,36 @@ export default function Map() {
         setErrorMsg("Permission to access location was denied");
         return;
       }
-
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location.coords);
+      setLocation(location);
+
+      let backPerm = await Location.requestBackgroundPermissionsAsync();
+      console.log(backPerm);
 
       setRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        latitudeDelta: 0.0922,
+        latitudeDelta: 0.0992,
         longitudeDelta: 0.0421,
       });
     })();
   }, []);
 
-  // useEffect(() => {
-  //   const getLocationAsync = async () => {
-  //     let { status } = await Permissions.askAsync(Permissions.LOCATION);
-  //     if ("granted" !== status) {
-  //       setLocation("Permission to access location was denied");
-  //     } else {
-  //       setLocationPermission(true);
-  //     }
-
-  //     let {
-  //       coords: { latitude, longitude },
-  //     } = await Location.getCurrentPositionAsync({});
-  //     setLocation(JSON.stringify({ latitude, longitude }));
-
-  //     // Center the map on the location we just fetched.
-
-  //   };
-
-  //   getLocationAsync();
-  // });
+  let text = "Waiting..";
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
 
   return (
     <MapView
-      region={mapRegion}
-      onRegionChange={(region) => setRegion(region)}
+      region={region}
       style={Styles.map}
-      customMapStyle={mapStyle}
+      customMapStyle={MapStyle}
       provider={PROVIDER_GOOGLE}
     />
+    // <Text style={{ flex: 1 }}>{text}</Text>
   );
 }
 
@@ -63,7 +61,7 @@ const Styles = StyleSheet.create({
   },
 });
 
-const mapStyle = [
+const MapStyle = [
   {
     elementType: "geometry",
     stylers: [
