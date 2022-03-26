@@ -4,12 +4,14 @@ import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import { Padding } from "../theme/Spacing";
 import Map from "../components/Map";
+import BottomSheet from "../components/BottomSheet";
 
 export default function Concerts() {
   return (
     <ScrollView>
       <View style={Styles.container}>
         <Map />
+        <BottomSheet />
       </View>
     </ScrollView>
   );
