@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
 import Navigation from "./navigation/Navigation";
 import { useFonts } from "expo-font";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -13,5 +14,9 @@ export default function App() {
     return null;
   }
 
-  return <Navigation />;
+  return (
+    <GestureHandlerRootView>
+      <Navigation />
+    </GestureHandlerRootView>
+  );
 }
