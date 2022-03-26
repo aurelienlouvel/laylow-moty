@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { BottomTabBar,createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   AccueilNavigator,
   ConcertsNavigator,
@@ -14,16 +14,6 @@ const Tab = createBottomTabNavigator();
 export default function Navigation() {
   return (
     <NavigationContainer>
-      {/* <BlurView
-      style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-      }}
-      tint="light"
-      intensity={100}
-    > */}
       <Tab.Navigator
         initialRouteName="AccueilTab"
         screenOptions={({ route }) => ({
@@ -39,9 +29,7 @@ export default function Navigation() {
               iconName = focused ? "person" : "person-outline";
               return <Ionicons name={iconName} size={size} color={color} />;
             } else if (route.name === "ConcertsTab") {
-              iconName = focused
-                ? "ticket-confirmation"
-                : "ticket-confirmation-outline";
+              iconName = focused ? "ticket-confirmation" : "ticket-confirmation-outline";
               return (
                 <MaterialCommunityIcons
                   name={iconName}
@@ -71,7 +59,6 @@ export default function Navigation() {
         <Tab.Screen name="ConcertsTab" component={ConcertsNavigator} />
         <Tab.Screen name="ForumTab" component={ForumNavigator} />
       </Tab.Navigator>
-    {/* </BlurView> */}
     </NavigationContainer>
   );
 }
