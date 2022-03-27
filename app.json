@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "laylow",
-    "slug": "laylow",
+    "name": "Laylow MOTY",
+    "slug": "laylow-moty",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,7 +20,7 @@
       "supportsTablet": true,
       "config": {
         "googleMapsApiKey": "<ios maps api key>"
-    }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -29,12 +29,13 @@
       },
       "config": {
         "googleMaps": {
-            "apiKey": "<android maps key>"
+          "apiKey": "<android maps key>"
         }
-    }     
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

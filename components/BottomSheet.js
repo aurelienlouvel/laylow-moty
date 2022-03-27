@@ -1,27 +1,73 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useMemo, useRef } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import TextStyles from "../theme/TextStyles";
+import { Colors, BackgroundColor } from "../theme/Colors";
+import { Padding } from "../theme/Spacing";
+import ConcertList from "../containers/ConcertList";
 
-export default function BottomSheet() {
+import BottomSheet from "@gorhom/bottom-sheet";
+
+export default function Sheet() {
+  const bottomSheetRef = useRef(null);
+
+  const snapPoints = useMemo(() => ["33%", "66%"], []);
+
+  const handleSheetChanges = useCallback((index) => {
+    console.log("handleSheetChanges", index);
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        <Text>BottomSheet</Text>
+    <BottomSheet
+      ref={bottomSheetRef}
+      index={1}
+      snapPoints={snapPoints}
+      onChange={handleSheetChanges}
+      handleComponent={() => {
+        return (
+          <View
+            style={[
+              Styles.container,
+              BackgroundColor(Colors.noir),
+              BackgroundColor(Colors.noir),
+            ]}
+          >
+            <View style={[Styles.indicator, BackgroundColor(Colors.blanc)]} />
+          </View>
+        );
+      }}
+    >
+      <View style={[Styles.contentContainer, Padding(32, "x")]}>
+        <Text style={TextStyles.h2}>Concerts</Text>
+        <ConcertList />
       </View>
-    </View>
+    </BottomSheet>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
+const Styles = StyleSheet.create({
+  contentContainer: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: Colors.noir,
+    alignItems: "flex-start",
   },
-  content: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  container: {
+    height: 24,
+    padding: 10,
+    shadowOffset: {
+      width: 0,
+      height: -5,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 10,
+    elevation: 16,
+    borderTopLeftRadius: 14,
+    borderTopRightRadius: 14,
+  },
+
+  indicator: {
+    alignSelf: "center",
+    width: 40,
+    height: 4,
+    borderRadius: 4,
   },
 });

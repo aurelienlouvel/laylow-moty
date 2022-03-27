@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
-import { Padding, Margin } from "../theme/Spacing";
+import { Padding } from "../theme/Spacing";
 import AlbumList from "../containers/AlbumList";
 
 const { width, height } = Dimensions.get("window");
@@ -60,7 +60,7 @@ export default function Accueil() {
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <>
+        <View>
           <Text
             style={{
               fontFamily: "Cloister",
@@ -140,16 +140,18 @@ export default function Accueil() {
             <View style={Padding(32, "x")}>
               <Text style={TextStyles.headTitle}>{data.artiste}</Text>
             </View>
-            <View style={Padding(32, "x")}>
+            <View style={[Padding(32, "x"), { alignItems: "flex-start" }]}>
               <Text style={TextStyles.h2}>Il était une fois ...</Text>
               <Text style={TextStyles.p}>{data.biographie}</Text>
             </View>
-            <View style={Padding(32, "l")}>
-              <Text style={TextStyles.h2}>Discographie</Text>
+            <View style={{ alignItems: "flex-start" }}>
+              <Text style={[TextStyles.h2, Padding(32, "x")]}>
+                Discographie
+              </Text>
               <AlbumList />
             </View>
           </View>
-        </>
+        </View>
       )}
     </ScrollView>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, Text } from "react-native";
+import { View, StyleSheet, Dimensions, Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 export default function Map() {
@@ -44,13 +44,15 @@ export default function Map() {
   }
 
   return (
-    <MapView
-      region={region}
-      style={Styles.map}
-      customMapStyle={MapStyle}
-      provider={PROVIDER_GOOGLE}
-    />
-    // <Text style={{ flex: 1 }}>{text}</Text>
+    <View>
+      <MapView
+        region={region}
+        style={Styles.map}
+        customMapStyle={MapStyle}
+        provider={PROVIDER_GOOGLE}
+      />
+      {/* <Text style={{ flex: 1 }}>{text}</Text> */}
+    </View>
   );
 }
 

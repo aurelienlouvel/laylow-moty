@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, ActivityIndicator, Text, FlatList } from "react-native";
+import { View, ActivityIndicator, FlatList } from "react-native";
 import AlbumCard from "../components/AlbumCard";
+import { Padding } from "../theme/Spacing";
 
 export default function AlbumList() {
   const [isLoading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ export default function AlbumList() {
         <ActivityIndicator />
       ) : (
         <FlatList
+          style={Padding(32, "x")}
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (

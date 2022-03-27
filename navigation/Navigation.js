@@ -1,5 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { BottomTabBar,createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabBar,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
 import {
   AccueilNavigator,
   ConcertsNavigator,
@@ -7,20 +10,27 @@ import {
 } from "./ScreenNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { BlurView } from 'expo-blur';
+import { BlurView } from "expo-blur";
+import { Colors } from "../theme/Colors";
 
 const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      theme={{
+        colors: {
+          background: Colors.noir,
+        },
+      }}
+    >
       <Tab.Navigator
         initialRouteName="AccueilTab"
         screenOptions={({ route }) => ({
           tabBarStyle: {
-            backgroundColor: '#000000',
+            backgroundColor: Colors.noir,
             borderTopWidth: 0,
-            height: '8%',
+            height: "8%",
           },
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -29,7 +39,9 @@ export default function Navigation() {
               iconName = focused ? "person" : "person-outline";
               return <Ionicons name={iconName} size={size} color={color} />;
             } else if (route.name === "ConcertsTab") {
-              iconName = focused ? "ticket-confirmation" : "ticket-confirmation-outline";
+              iconName = focused
+                ? "ticket-confirmation"
+                : "ticket-confirmation-outline";
               return (
                 <MaterialCommunityIcons
                   name={iconName}
@@ -48,7 +60,7 @@ export default function Navigation() {
               );
             }
           },
-          
+
           tabBarActiveTintColor: "#ffffff",
           tabBarInactiveTintColor: "#ffffff",
           tabBarShowLabel: false,
