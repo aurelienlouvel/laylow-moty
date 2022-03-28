@@ -10,41 +10,40 @@ export default {
   },
   h1: {
     fontSize: 32,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.or,
     marginVertical: 24,
   },
   h2: {
     fontSize: 22,
-    textAlign: 'center',
-    fontWeight: '700',
+    textAlign: "center",
+    fontWeight: "700",
     color: Colors.blanc,
     marginVertical: 16,
   },
   h3: {
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
     color: Colors.blanc,
     marginVertical: 8,
   },
   p: {
     fontSize: 16,
-    fontWeight: '400',
+    fontWeight: "400",
     color: Colors.blanc,
-    marginVertical: 8,
     fontFamily: "Futura-Book",
   },
   underText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 12,
-    fontWeight: '600',
-    color: '#ffffff',
+    fontWeight: "600",
+    color: "#ffffff",
     opacity: 0.64,
   },
   bottomText: {
     fontSize: 13,
     paddingVertical: 2,
-    color: '#ffffff',
+    color: "#ffffff",
     opacity: 0.64,
   },
   imgAlbum: {
@@ -53,5 +52,5 @@ export default {
     marginLeft: 26,
     width: 300,
     height: 300,
-  }
+  },
 };
