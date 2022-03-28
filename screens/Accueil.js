@@ -62,13 +62,15 @@ export default function Accueil() {
       ) : (
         <View>
           <Text
-            style={{
-              fontFamily: "Cloister",
-              fontSize: 64,
-              color: "#970203",
-              textAlign: "center",
-              marginTop: 20,
-            }}
+            style={[
+              {
+                fontFamily: "Cloister",
+                fontSize: 64,
+                color: "#970203",
+                textAlign: "center",
+              },
+              Padding(16, "y"),
+            ]}
           >
             moty
           </Text>
@@ -96,7 +98,6 @@ export default function Accueil() {
           </View>
 
           <Animated.FlatList
-            style={{ paddingVertical: 20 }}
             data={imgData}
             onScroll={Animated.event(
               [{ nativeEvent: { contentOffset: { x: scrollX } } }],
@@ -137,15 +138,19 @@ export default function Accueil() {
           />
 
           <View>
-            <View style={Padding(32, "x")}>
+            <View style={Padding(8)}>
               <Text style={TextStyles.headTitle}>{data.artiste}</Text>
             </View>
-            <View style={[Padding(32, "x"), { alignItems: "flex-start" }]}>
-              <Text style={TextStyles.h2}>Il était une fois ...</Text>
+            <View style={Padding(32, "x")}>
+              <Text style={[TextStyles.h2, { textAlign: "left" }]}>
+                Il était une fois ...
+              </Text>
               <Text style={TextStyles.p}>{data.biographie}</Text>
             </View>
-            <View style={{ alignItems: "flex-start" }}>
-              <Text style={[TextStyles.h2, Padding(32, "x")]}>
+            <View style={Padding(32, "y")}>
+              <Text
+                style={[TextStyles.h2, Padding(32, "x"), { textAlign: "left" }]}
+              >
                 Discographie
               </Text>
               <AlbumList />

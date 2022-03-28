@@ -10,7 +10,7 @@ import BottomSheet from "@gorhom/bottom-sheet";
 export default function Sheet() {
   const bottomSheetRef = useRef(null);
 
-  const snapPoints = useMemo(() => ["33%", "66%"], []);
+  const snapPoints = useMemo(() => ["16%", "66%"], []);
 
   const handleSheetChanges = useCallback((index) => {
     console.log("handleSheetChanges", index);
