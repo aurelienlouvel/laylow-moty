@@ -57,7 +57,7 @@ export default function Album(props) {
       ) : (
         <View style={{ flex: 1, flexDirection: "column" }}>
           <Ionicons
-            style={Padding(16)}
+            style={[Padding(16), {marginTop: 40}]}
             name={"chevron-back"}
             size={32}
             color={"#ffffff"}

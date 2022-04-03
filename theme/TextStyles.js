@@ -17,10 +17,10 @@ export default {
   h2: {
     fontSize: 22,
     textAlign: "center",
-    fontWeight: "bold",
+    // fontWeight: "bold",
     color: Colors.blanc,
     marginVertical: 16,
-    fontFamily: "Futura-Book",
+    fontFamily: "SFPro-Bold",
   },
   h3: {
     fontSize: 16,
@@ -29,10 +29,10 @@ export default {
     marginVertical: 8,
   },
   p: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "400",
     color: Colors.blanc,
-    fontFamily: "Futura-Book",
+    fontFamily: "SFPro-Regular",
   },
   underText: {
     textAlign: "center",
