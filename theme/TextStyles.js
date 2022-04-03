@@ -17,9 +17,10 @@ export default {
   h2: {
     fontSize: 22,
     textAlign: "center",
-    fontWeight: "700",
+    fontWeight: "bold",
     color: Colors.blanc,
     marginVertical: 16,
+    fontFamily: "Futura-Book",
   },
   h3: {
     fontSize: 16,
@@ -49,8 +50,21 @@ export default {
   imgAlbum: {
     borderRadius: 10,
     marginTop: 16,
-    marginLeft: 26,
+    resizeMode: 'contain',
+    alignSelf: 'center',
     width: 300,
     height: 300,
   },
+  button: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 16,
+    marginBottom: 16,
+  },
+  buttonContent: {
+    fontSize: 18,
+    marginRight: 16,
+    color: Colors.blanc,
+  }
 };
