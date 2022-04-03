@@ -29,7 +29,7 @@ export default function Sheet() {
         );
       }}
     >
-      <View style={[Styles.contentContainer, Padding(32, "x")]}>
+      <View style={[Styles.contentContainer, Padding(24, "x")]}>
         <Text style={TextStyles.h2}>Concerts</Text>
         <ConcertList />
       </View>
@@ -42,7 +42,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.noir,
     alignItems: "flex-start",
-    paddingBottom: 120,
+    paddingBottom: 90,
   },
   container: {
     height: 24,

@@ -1,8 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
 import Navigation from "./navigation/Navigation";
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -16,7 +16,9 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Navigation />
+      <SafeAreaView style={{ flex: 1 }}>
+        <Navigation />
+      </SafeAreaView>
     </GestureHandlerRootView>
   );
 }

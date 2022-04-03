@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import {
-  StyleSheet,
   ActivityIndicator,
   ScrollView,
   Button,
-  FlatList,
   Text,
   View,
   Image,
   Linking,
 } from "react-native";
-// import Musique from "../Components/Musique.js";
+import { Ionicons } from "@expo/vector-icons";
+
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import { Padding } from "../theme/Spacing";
+import moment from "moment";
+import "moment/locale/fr";
 
 export default function Album(props) {
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  options.timeZone = "UTC";
+  options.timeZoneName = "short";
+
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
@@ -38,24 +48,42 @@ export default function Album(props) {
     getData();
   }, []);
 
+  moment.locale("fr");
+  let date = moment(data.date).format("dddd, D MMMM YYYY").toLocaleUpperCase();
+  let heure = moment(data.date).format("HH:mm");
+
   return (
-    <ScrollView
-      style={StyleSheet.compose(BackgroundColor(Colors.noir), Padding(32))}
-    >
+    <ScrollView style={BackgroundColor(Colors.noir)}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
         <View>
-          <Button title="Go back" onPress={() => props.navigation.goBack()} />
-          <Image style={TextStyles.imgConcert} source={{ uri: data.img }} />
-          <Text style={TextStyles.h2}>{data.festival}</Text>
-          <Text style={TextStyles.ville}>{data.ville}</Text>
-          <Text style={TextStyles.h4}>{data.lieu}</Text>
-          <Text style={TextStyles.bottomText}>{data.date}</Text>
-          <Button
-            title="Acheter un ticket"
-            onPress={() => Linking.openURL(data.ticket)}
+          <Ionicons
+            style={Padding(16)}
+            name={"chevron-back"}
+            size={32}
+            color={"#ffffff"}
+            onPress={() => props.navigation.goBack()}
           />
+          <View style={Padding(24, "x")}>
+            <Image style={TextStyles.imgConcert} source={{ uri: data.img }} />
+            <Text style={TextStyles.h2}>{data.festival}</Text>
+            <View style={Padding(16, "y")}>
+              <Text style={TextStyles.festival}>Où ?</Text>
+              <Text style={TextStyles.lieu}>{data.lieu}</Text>
+              <Text style={TextStyles.ville}>{data.ville}</Text>
+            </View>
+            <View style={Padding(16, "y")}>
+              <Text style={TextStyles.festival}>Quand ?</Text>
+              <Text style={TextStyles.lieu}>{heure}</Text>
+              <Text style={TextStyles.ville}>{date}</Text>
+            </View>
+            <Button
+              style={Padding(24, "y")}
+              title="Acheter un ticket"
+              onPress={() => Linking.openURL(data.ticket)}
+            />
+          </View>
         </View>
       )}
     </ScrollView>
