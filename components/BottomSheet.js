@@ -4,13 +4,12 @@ import TextStyles from "../theme/TextStyles";
 import { Colors, BackgroundColor } from "../theme/Colors";
 import { Padding } from "../theme/Spacing";
 import ConcertList from "../containers/ConcertList";
-
 import BottomSheet from "@gorhom/bottom-sheet";
 
 export default function Sheet() {
   const bottomSheetRef = useRef(null);
 
-  const snapPoints = useMemo(() => ["16%", "66%"], []);
+  const snapPoints = useMemo(() => ["20%", "66%"], []);
 
   const handleSheetChanges = useCallback((index) => {
     console.log("handleSheetChanges", index);
@@ -24,13 +23,7 @@ export default function Sheet() {
       onChange={handleSheetChanges}
       handleComponent={() => {
         return (
-          <View
-            style={[
-              Styles.container,
-              BackgroundColor(Colors.noir),
-              BackgroundColor(Colors.noir),
-            ]}
-          >
+          <View style={[Styles.container, BackgroundColor(Colors.noir)]}>
             <View style={[Styles.indicator, BackgroundColor(Colors.blanc)]} />
           </View>
         );
@@ -49,6 +42,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.noir,
     alignItems: "flex-start",
+    paddingBottom: 120,
   },
   container: {
     height: 24,

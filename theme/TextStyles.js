@@ -43,7 +43,7 @@ export default {
   bottomText: {
     fontSize: 13,
     paddingVertical: 2,
-    color: "#ffffff",
+    color: Colors.blanc,
     opacity: 0.64,
   },
   imgAlbum: {
@@ -52,5 +52,21 @@ export default {
     marginLeft: 26,
     width: 300,
     height: 300,
+  },
+  festival: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: Colors.blanc,
+    marginVertical: 6,
+  },
+  ville: {
+    fontSize: 14,
+    fontWeight: "400",
+    color: Colors.or,
+  },
+  imgConcert: {
+    borderRadius: 10,
+    width: 100,
+    height: 100,
   },
 };

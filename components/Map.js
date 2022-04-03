@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Dimensions, Text } from "react-native";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
+import Colors from "../theme/Colors";
+import { useNavigation } from "@react-navigation/native";
+
 export default function Map() {
+  const navigation = useNavigation();
+
   const initialRegion = {
     latitude: 48.8566,
     longitude: 2.3522,
@@ -10,11 +15,28 @@ export default function Map() {
     longitudeDelta: 0.02,
   };
 
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = React.useState(initialRegion);
 
+  const getData = async () => {
+    try {
+      const response = await fetch(
+        "https://www.neomiannay.fr/php-laylow/concerts.php"
+      );
+      const json = await response.json();
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
+    getData();
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -22,16 +44,12 @@ export default function Map() {
         return;
       }
       let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-
       let backPerm = await Location.requestBackgroundPermissionsAsync();
-      console.log(backPerm);
-
       setRegion({
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
-        latitudeDelta: 0.0992,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
       });
     })();
   }, []);
@@ -50,8 +68,26 @@ export default function Map() {
         style={Styles.map}
         customMapStyle={MapStyle}
         provider={PROVIDER_GOOGLE}
-      />
-      {/* <Text style={{ flex: 1 }}>{text}</Text> */}
+      >
+        {data.map((concert) => {
+          let latitude = parseFloat(concert.coordonnees.split(",")[0], 6);
+          let longitude = parseFloat(concert.coordonnees.split(",")[1]);
+          return (
+            <MapView.Marker
+              coordinate={{
+                latitude: latitude,
+                longitude: longitude,
+              }}
+              key={concert.id}
+              title={concert.festival}
+              description={concert.ville}
+              onPress={() => {
+                navigation.push("Concert", { id: concert.id });
+              }}
+            />
+          );
+        })}
+      </MapView>
     </View>
   );
 }
@@ -65,14 +101,82 @@ const Styles = StyleSheet.create({
 
 const MapStyle = [
   {
-    elementType: "geometry",
+    featureType: "administrative",
+    elementType: "labels",
     stylers: [
       {
-        color: "#212121",
+        visibility: "off",
       },
     ],
   },
   {
+    featureType: "administrative.country",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "administrative.province",
+    elementType: "geometry.stroke",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "landscape",
+    elementType: "geometry",
+    stylers: [
+      {
+        visibility: "on",
+      },
+      {
+        color: "#000000",
+      },
+    ],
+  },
+  {
+    featureType: "landscape.natural",
+    elementType: "labels",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    elementType: "all",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "all",
+    stylers: [
+      {
+        color: "#64656d",
+      },
+    ],
+  },
+  {
+    featureType: "road",
+    elementType: "labels",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "transit",
     elementType: "labels.icon",
     stylers: [
       {
@@ -81,41 +185,8 @@ const MapStyle = [
     ],
   },
   {
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#757575",
-      },
-    ],
-  },
-  {
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#212121",
-      },
-    ],
-  },
-  {
-    featureType: "administrative",
+    featureType: "transit.line",
     elementType: "geometry",
-    stylers: [
-      {
-        color: "#757575",
-      },
-    ],
-  },
-  {
-    featureType: "administrative.country",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#9e9e9e",
-      },
-    ],
-  },
-  {
-    featureType: "administrative.land_parcel",
     stylers: [
       {
         visibility: "off",
@@ -123,110 +194,29 @@ const MapStyle = [
     ],
   },
   {
-    featureType: "administrative.locality",
-    elementType: "labels.text.fill",
+    featureType: "transit.line",
+    elementType: "labels.text",
     stylers: [
       {
-        color: "#bdbdbd",
+        visibility: "off",
       },
     ],
   },
   {
-    featureType: "poi",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#757575",
-      },
-    ],
-  },
-  {
-    featureType: "poi.park",
+    featureType: "transit.station.airport",
     elementType: "geometry",
     stylers: [
       {
-        color: "#181818",
+        visibility: "off",
       },
     ],
   },
   {
-    featureType: "poi.park",
-    elementType: "labels.text.fill",
+    featureType: "transit.station.airport",
+    elementType: "labels",
     stylers: [
       {
-        color: "#616161",
-      },
-    ],
-  },
-  {
-    featureType: "poi.park",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#1b1b1b",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#2c2c2c",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#8a8a8a",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#373737",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#3c3c3c",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway.controlled_access",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#4e4e4e",
-      },
-    ],
-  },
-  {
-    featureType: "road.local",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#616161",
-      },
-    ],
-  },
-  {
-    featureType: "transit",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#757575",
+        visibility: "off",
       },
     ],
   },
@@ -235,16 +225,16 @@ const MapStyle = [
     elementType: "geometry",
     stylers: [
       {
-        color: "#000000",
+        color: "#1a1923",
       },
     ],
   },
   {
     featureType: "water",
-    elementType: "labels.text.fill",
+    elementType: "labels",
     stylers: [
       {
-        color: "#3d3d3d",
+        visibility: "off",
       },
     ],
   },
