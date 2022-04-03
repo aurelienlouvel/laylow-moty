@@ -156,6 +156,11 @@ export default function Accueil() {
               <AlbumList />
             </View>
           </View>
+          <View>
+            <Text style={[TextStyles.underText, Padding(24, "y"), {opacity: .7}]}>
+            2022 · CAN ™ 
+            </Text>
+          </View>
         </View>
       )}
     </ScrollView>
