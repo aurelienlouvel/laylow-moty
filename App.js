@@ -7,7 +7,8 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 export default function App() {
   const [fontLoaded] = useFonts({
     Cloister: require("./assets/font/CloisterBlack.ttf"),
-    "Futura-Book": require("./assets/font/FuturaLT-Book.ttf"),
+    "SFPro-Regular": require("./assets/font/SFProDisplay-Regular.ttf"),
+    "SFPro-Bold": require("./assets/font/SFProDisplay-Semibold.ttf"),
   });
 
   if (!fontLoaded) {
@@ -16,9 +17,16 @@ export default function App() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Navigation />
-      </SafeAreaView>
+      <Navigation />
     </GestureHandlerRootView>
   );
+  // return (
+  //   <GestureHandlerRootView style={{ flex: 1 }}>
+  //   <SafeAreaProvider>
+  //     <SafeAreaView style={{ flex: 1 }}>
+  //       <Navigation />
+  //     </SafeAreaView>
+  //   </SafeAreaProvider>
+  //   </GestureHandlerRootView>
+  // );
 }

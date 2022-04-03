@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   text: {
+    fontFamily: "SFPro-Bold",
     marginVertical: 10,
     fontSize: 16,
     color: "#fff",

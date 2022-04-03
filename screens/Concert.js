@@ -7,8 +7,10 @@ import {
   View,
   Image,
   Linking,
+  Pressable,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
@@ -59,7 +61,7 @@ export default function Album(props) {
       ) : (
         <View>
           <Ionicons
-            style={Padding(16)}
+            style={[Padding(16), {marginTop: 40}]}
             name={"chevron-back"}
             size={32}
             color={"#ffffff"}
@@ -78,11 +80,21 @@ export default function Album(props) {
               <Text style={TextStyles.lieu}>{heure}</Text>
               <Text style={TextStyles.ville}>{date}</Text>
             </View>
-            <Button
-              style={Padding(24, "y")}
-              title="Acheter un ticket"
+            <Pressable
+              style={[
+                [TextStyles.button],
+                {backgroundColor: "#f94c57"},
+                {padding: 16},
+                {borderRadius: 8},
+                {justifyContent: "center"}
+              ]}
               onPress={() => Linking.openURL(data.ticket)}
-            />
+            >
+              <Text style={[[TextStyles.buttonContent], { color: "white" }]}>
+                Acheter un ticket
+              </Text>
+              <Fontisto name={"ticket"} size={32} color={"white"} />
+            </Pressable>
           </View>
         </View>
       )}
