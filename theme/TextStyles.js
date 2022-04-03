@@ -49,11 +49,10 @@ export default {
   },
   imgAlbum: {
     borderRadius: 10,
-    marginTop: 16,
     resizeMode: "contain",
     alignSelf: "center",
-    width: 300,
-    height: 300,
+    width: 200,
+    height: 200,
   },
   festival: {
     fontSize: 18,
@@ -61,22 +60,35 @@ export default {
     color: Colors.blanc,
     marginVertical: 6,
   },
+  lieu: {
+    fontSize: 32,
+    fontWeight: "700",
+    color: Colors.blanc,
+  },
   ville: {
     fontSize: 14,
     fontWeight: "400",
     color: Colors.or,
   },
+  date: {
+    fontSize: 14,
+    fontWeight: "400",
+    color: Colors.blanc,
+    paddingVertical: 6,
+  },
   imgConcert: {
     borderRadius: 10,
-    width: 100,
-    height: 100,
+    resizeMode: "contain",
+    alignSelf: "center",
+    width: 200,
+    height: 200,
   },
   button: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     marginLeft: 16,
-    marginBottom: 16,
+    marginBottom: 32,
   },
   buttonContent: {
     fontSize: 18,

@@ -27,12 +27,11 @@ export default function AlbumList() {
   }, []);
 
   return (
-    <View>
+    <View style={{ paddingBottom: 50 }}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
         <BottomSheetFlatList
-          style={Padding(8, "y")}
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
