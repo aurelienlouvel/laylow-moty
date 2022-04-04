@@ -2,8 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import Navigation from "./navigation/Navigation";
 import { useFonts } from "expo-font";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-
 export default function App() {
   const [fontLoaded] = useFonts({
     "SFPro-Regular": require("./assets/font/SFProDisplay-Regular.ttf"),

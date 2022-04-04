@@ -32,13 +32,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 8,
-    marginVertical: 16,
+    marginVertical: 20,
   },
   image: {
-    width: 48,
-    height: 48,
+    width: 54,
+    height: 54,
     resizeMode: "contain",
-    marginRight: 24,
+    marginRight: 16,
   },
   text: {
     justifyContent: "center",

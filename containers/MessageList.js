@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, Text, FlatList } from "react-native";
 import MessageCard from "../components/MessageCard";
 
+// --------------------------------------------------------
+// Page PHP pour récupérer les données pseudo et message
+// --------------------------------------------------------
 export default function MessageList() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -39,7 +42,7 @@ export default function MessageList() {
               message={item.message}
             />
           )}
-          horizontal
+          // horizontal
           showsHorizontalScrollIndicator={false}
         />
       )}
