@@ -30,7 +30,6 @@ export default function Sheet() {
       }}
     >
       <View style={[Styles.contentContainer, Padding(24, "x")]}>
-        <Text style={TextStyles.h2}>Concerts</Text>
         <ConcertList />
       </View>
     </BottomSheet>
@@ -42,7 +41,7 @@ const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.noir,
     alignItems: "flex-start",
-    paddingBottom: 90,
+    // paddingBottom: 90,
   },
   container: {
     height: 24,

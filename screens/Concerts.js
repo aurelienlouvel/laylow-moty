@@ -15,7 +15,6 @@ export default function Concerts() {
       );
       const json = await response.json();
       setData(json);
-      console.log(json);
     } catch (error) {
       console.error(error);
     } finally {

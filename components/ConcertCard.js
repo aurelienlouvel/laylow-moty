@@ -17,8 +17,10 @@ export default function AlbumCard(props) {
       >
         <Image style={styles.image} source={{ uri: props.img }} />
         <View style={styles.text}>
-          <Text style={TextStyles.festival}>{props.festival}</Text>
-          <Text style={TextStyles.ville}>{props.ville}</Text>
+          <Text style={[TextStyles.h3, { fontSize: 18, opacity: 1 }]}>
+            {props.festival}
+          </Text>
+          <Text style={[TextStyles.p, { fontSize: 14 }]}>{props.ville}</Text>
         </View>
       </Pressable>
     </View>
@@ -29,16 +31,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 4,
     paddingHorizontal: 8,
-    marginBottom: 16,
-    borderRadius: 16,
+    marginVertical: 16,
   },
   image: {
     width: 48,
     height: 48,
     resizeMode: "contain",
-    borderRadius: 10,
     marginRight: 24,
   },
   text: {

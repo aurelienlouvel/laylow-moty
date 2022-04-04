@@ -57,10 +57,10 @@ export default function Album(props) {
       ) : (
         <View style={{ flex: 1, flexDirection: "column" }}>
           <Ionicons
-            style={[Padding(16), {marginTop: 40}]}
+            style={[Padding(16), { marginTop: 24 }]}
             name={"chevron-back"}
             size={32}
-            color={"#ffffff"}
+            color={Colors.blanc}
             onPress={() => props.navigation.goBack()}
           />
           <Image
@@ -68,9 +68,9 @@ export default function Album(props) {
             source={Images[props.route.params.id - 1]}
           />
           <Text style={[Padding(24, "x"), TextStyles.h2]}>{data.titre}</Text>
-          <Text style={TextStyles.underText}>{data.description}</Text>
-          <Text style={TextStyles.underText}>HIP-HOP/RAP · {data.annee}</Text>
-
+          <Text style={TextStyles.underText}>
+            {data.description} · {data.annee}
+          </Text>
           {/* liste des sons Musique  */}
           <FlatList
             style={{
@@ -154,26 +154,29 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     flexDirection: "row",
-    padding: 5,
-    borderTopWidth: 1,
+    padding: 4,
+    borderBottomWidth: 1,
     borderColor: "#ffffff20",
   },
   index: {
     margin: 10,
     fontSize: 16,
     paddingVertical: 2,
-    color: "#ffffff",
-    opacity: 0.64,
+    color: Colors.blanc,
+    opacity: 0.6,
+    fontFamily: "SFPro-Regular",
   },
   text: {
     flex: 1,
     marginVertical: 12,
     fontSize: 16,
-    color: "#ffff",
+    color: Colors.blanc,
+    fontFamily: "SFPro-Bold",
   },
   time: {
     margin: 10,
     fontSize: 16,
-    color: "#ffff",
+    color: Colors.blanc,
+    fontFamily: "SFPro-Regular",
   },
 });
