@@ -20,15 +20,15 @@ import { Padding } from "../theme/Spacing";
 import AlbumList from "../containers/AlbumList";
 
 const { width, height } = Dimensions.get("window");
-const imageW = width * 0.55;
-const imageH = imageW * 1.5;
+const imageW = width - 64;
+const imageH = height / 3;
 
 const imgData = [
-  "https://www.neomiannay.fr/php-laylow/bio-img/image1.png",
-  "https://www.neomiannay.fr/php-laylow/bio-img/image2.png",
-  "https://www.neomiannay.fr/php-laylow/bio-img/image3.png",
-  "https://www.neomiannay.fr/php-laylow/bio-img/image4.png",
-  "https://www.neomiannay.fr/php-laylow/bio-img/image5.png",
+  "https://intrld.com/wp-content/uploads/2021/07/laylow.png",
+  "https://intrld.com/wp-content/uploads/2021/10/laylow.png",
+  "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F11%2Ffiles%2F2018%2F07%2Flaylow-raw-interview-5-copie.jpg?w=960&cbr=1&q=90&fit=max",
+  "https://numero.twic.pics/images/flexible_grid/100/laylow-3-numero-magazine.jpg",
+  "https://intrld.com/wp-content/uploads/2021/07/laylow-1-1000x600.png",
 ];
 
 export default function Accueil() {
@@ -61,43 +61,8 @@ export default function Accueil() {
         <ActivityIndicator />
       ) : (
         <View>
-          <Text
-            style={[
-              {
-                fontFamily: "Cloister",
-                fontSize: 64,
-                color: "#970203",
-                textAlign: "center",
-              },
-              Padding(16, "y"),
-            ]}
-          >
-            moty
-          </Text>
-
-          <View style={StyleSheet.absoluteFillObject}>
-            {imgData.map((image, index) => {
-              const inputRange = [
-                (index - 1) * width,
-                index * width,
-                (index + 1) * width,
-              ];
-              const opacity = scrollX.interpolate({
-                inputRange,
-                outputRange: [0, 0.5, 0],
-              });
-              return (
-                <Animated.Image
-                  key={`image-${index}`}
-                  source={{ uri: image }}
-                  style={[StyleSheet.absoluteFillObject, { opacity }]}
-                  blurRadius={30}
-                />
-              );
-            })}
-          </View>
-
           <Animated.FlatList
+            style={{ marginTop: 48 }}
             data={imgData}
             onScroll={Animated.event(
               [{ nativeEvent: { contentOffset: { x: scrollX } } }],
@@ -127,9 +92,10 @@ export default function Accueil() {
                     source={{ uri: item }}
                     style={{
                       width: imageW,
+                      maxWidth: 400,
                       height: imageH,
+                      maxHeight: 400,
                       resizeMode: "cover",
-                      borderRadius: 16,
                     }}
                   />
                 </View>
@@ -138,8 +104,8 @@ export default function Accueil() {
           />
 
           <View>
-            <View style={Padding(8)}>
-              <Text style={TextStyles.headTitle}>{data.artiste}</Text>
+            <View style={Padding(32, "x")}>
+              <Text style={TextStyles.h1}>LAYLOW</Text>
             </View>
             <View style={Padding(32, "x")}>
               <Text style={[TextStyles.h2, { textAlign: "left" }]}>
@@ -147,7 +113,7 @@ export default function Accueil() {
               </Text>
               <Text style={TextStyles.p}>{data.biographie}</Text>
             </View>
-            <View style={Padding(32, "y")}>
+            <View>
               <Text
                 style={[TextStyles.h2, Padding(32, "x"), { textAlign: "left" }]}
               >
@@ -157,8 +123,10 @@ export default function Accueil() {
             </View>
           </View>
           <View>
-            <Text style={[TextStyles.underText, Padding(24, "y"), {opacity: .7}]}>
-            2022 · CAN ™ 
+            <Text
+              style={[TextStyles.underText, Padding(16, "y"), { opacity: 0.6 }]}
+            >
+              2022 · CAN ™
             </Text>
           </View>
         </View>

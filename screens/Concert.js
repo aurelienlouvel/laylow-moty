@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
-
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import { Padding } from "../theme/Spacing";
@@ -61,7 +60,7 @@ export default function Album(props) {
       ) : (
         <View>
           <Ionicons
-            style={[Padding(16), {marginTop: 40}]}
+            style={[Padding(16), { marginTop: 24 }]}
             name={"chevron-back"}
             size={32}
             color={"#ffffff"}
@@ -83,10 +82,10 @@ export default function Album(props) {
             <Pressable
               style={[
                 [TextStyles.button],
-                {backgroundColor: "#f94c57"},
-                {padding: 16},
-                {borderRadius: 8},
-                {justifyContent: "center"}
+                { backgroundColor: Colors.rouge },
+                { padding: 16 },
+                { borderRadius: 8 },
+                { justifyContent: "center" },
               ]}
               onPress={() => Linking.openURL(data.ticket)}
             >

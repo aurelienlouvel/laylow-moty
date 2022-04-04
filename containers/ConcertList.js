@@ -1,7 +1,8 @@
 import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import React, { useEffect, useState } from "react";
-import { View, ActivityIndicator, FlatList } from "react-native";
+import { Text, View, ActivityIndicator } from "react-native";
 import ConcertCard from "../components/ConcertCard";
+import TextStyles from "../theme/TextStyles";
 import { Padding } from "../theme/Spacing";
 
 export default function AlbumList() {
@@ -32,6 +33,13 @@ export default function AlbumList() {
         <ActivityIndicator />
       ) : (
         <BottomSheetFlatList
+          ListHeaderComponent={() => {
+            return (
+              <View style={Padding(8, "x")}>
+                <Text style={TextStyles.h1}>Concerts</Text>
+              </View>
+            );
+          }}
           data={data}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
@@ -42,6 +50,7 @@ export default function AlbumList() {
               ville={item.ville}
             />
           )}
+          showsVerticalScrollIndicator={false}
         />
       )}
     </View>

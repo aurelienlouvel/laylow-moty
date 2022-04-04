@@ -1,5 +1,7 @@
 import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../theme/Colors";
+import TextStyles from "../theme/TextStyles";
 
 export default function AlbumCard(props) {
   const navigation = useNavigation();
@@ -20,7 +22,9 @@ export default function AlbumCard(props) {
         }}
       >
         <Image style={styles.image} source={Images[props.id - 1]} />
-        <Text style={styles.text}>{props.titre}</Text>
+        <Text style={[TextStyles.p, { width: 160, paddingVertical: 8 }]}>
+          {props.titre}
+        </Text>
       </Pressable>
     </View>
   );
@@ -29,19 +33,11 @@ export default function AlbumCard(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
-    marginRight: 20,
+    margin: 10,
   },
   image: {
     width: 160,
     height: 160,
     resizeMode: "contain",
-    borderRadius: 10,
-  },
-  text: {
-    fontFamily: "SFPro-Bold",
-    marginVertical: 10,
-    fontSize: 16,
-    color: "#fff",
-    width: 160,
   },
 });
