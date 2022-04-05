@@ -11,16 +11,11 @@ export default function Sheet() {
 
   const snapPoints = useMemo(() => ["22%", "66%"], []);
 
-  const handleSheetChanges = useCallback((index) => {
-    console.log("handleSheetChanges", index);
-  }, []);
-
   return (
     <BottomSheet
       ref={bottomSheetRef}
       index={1}
       snapPoints={snapPoints}
-      onChange={handleSheetChanges}
       handleComponent={() => {
         return (
           <View style={[Styles.container, BackgroundColor(Colors.noir)]}>

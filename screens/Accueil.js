@@ -5,14 +5,9 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  SafeAreaView,
   Image,
   Animated,
-  FlatList,
-  StatusBar,
   Dimensions,
-  TouchableOpacity,
 } from "react-native";
 import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
@@ -24,11 +19,12 @@ const imageW = width - 64;
 const imageH = height / 3;
 
 const imgData = [
-  "https://intrld.com/wp-content/uploads/2021/07/laylow.png",
-  "https://intrld.com/wp-content/uploads/2021/10/laylow.png",
-  "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F11%2Ffiles%2F2018%2F07%2Flaylow-raw-interview-5-copie.jpg?w=960&cbr=1&q=90&fit=max",
-  "https://numero.twic.pics/images/flexible_grid/100/laylow-3-numero-magazine.jpg",
-  "https://intrld.com/wp-content/uploads/2021/07/laylow-1-1000x600.png",
+  require("../assets/img/laylow/1.jpg"),
+  require("../assets/img/laylow/2.jpg"),
+  require("../assets/img/laylow/3.jpg"),
+  require("../assets/img/laylow/4.jpg"),
+  require("../assets/img/laylow/5.jpg"),
+  require("../assets/img/laylow/6.jpg"),
 ];
 
 export default function Accueil() {
@@ -89,7 +85,7 @@ export default function Accueil() {
                   }}
                 >
                   <Image
-                    source={{ uri: item }}
+                    source={item}
                     style={{
                       width: imageW,
                       maxWidth: 400,
