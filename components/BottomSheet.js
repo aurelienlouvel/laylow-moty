@@ -41,7 +41,6 @@ const Styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.noir,
     alignItems: "flex-start",
-    // paddingBottom: 90,
   },
   container: {
     height: 24,

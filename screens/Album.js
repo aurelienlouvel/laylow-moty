@@ -15,10 +15,13 @@ import { Colors, BackgroundColor, Color } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import ButtonStyles from "../theme/ButtonStyles";
 import { Padding } from "../theme/Spacing";
+import { SvgXml } from "react-native-svg";
 import { Ionicons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+
+const xml = `
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><rect width="8" height="5" x="3" y="33" fill="#f98613"/><rect width="8" height="5" x="14" y="17" fill="#f1bc18"/><rect width="8" height="5" x="14" y="25" fill="#ed6630"/><rect width="8" height="5" x="14" y="33" fill="#d64d45"/><rect width="8" height="5" x="25" y="25" fill="#bd3369"/><rect width="8" height="5" x="25" y="33" fill="#6d2f87"/><rect width="8" height="5" x="36" y="9" fill="#19aa5c"/><rect width="8" height="5" x="36" y="17" fill="#129b8a"/><rect width="8" height="5" x="36" y="25" fill="#1084b6"/><rect width="8" height="5" x="36" y="33" fill="#1168cf"/></svg>
+`;
 
 const Images = [
   require("../assets/img/albums/mercy.jpg"),
@@ -109,32 +112,41 @@ export default function Album(props) {
           </Text>
           <View style={Padding(16)}>
             <Pressable
-              style={ButtonStyles.music}
+              style={[ButtonStyles.music, { backgroundColor: "#00dc4d" }]}
               onPress={() => Linking.openURL(data.spotify)}
             >
-              <Text style={ButtonStyles.textMusic}>Écouter sur Spotify</Text>
-              <MaterialCommunityIcons
-                style={ButtonStyles.icon}
+              <Text style={[ButtonStyles.textMusic, { color: Colors.blanc }]}>
+                Écouter sur Spotify
+              </Text>
+              <FontAwesome5
                 name={"spotify"}
                 size={26}
-                color={"#1DB954"}
+                color={Colors.blanc}
+                brand
               />
             </Pressable>
             <Pressable
-              style={ButtonStyles.music}
+              style={[ButtonStyles.music, BackgroundColor(Colors.blanc)]}
               onPress={() => Linking.openURL(data.apple)}
             >
-              <Text style={ButtonStyles.textMusic}>
+              <Text style={[ButtonStyles.textMusic, { color: Colors.noir }]}>
                 Écouter sur Apple Music
               </Text>
-              <Fontisto name={"applemusic"} size={26} color={"#f94c57"} />
+              <FontAwesome5
+                name={"apple"}
+                size={26}
+                color={Colors.noir}
+                brand
+              />
             </Pressable>
             <Pressable
-              style={ButtonStyles.music}
+              style={[ButtonStyles.music, BackgroundColor("#062444")]}
               onPress={() => Linking.openURL(data.deezer)}
             >
-              <Text style={ButtonStyles.textMusic}>Écouter sur Deezer</Text>
-              <FontAwesome5 name="deezer" brand size={26} color={"#00c7f2"} />
+              <Text style={[ButtonStyles.textMusic, { color: Colors.blanc }]}>
+                Écouter sur Deezer
+              </Text>
+              <SvgXml xml={xml} width="26px" height="26px" />
             </Pressable>
           </View>
         </View>
@@ -170,7 +182,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     fontSize: 16,
     color: Colors.blanc,
-    fontFamily: "SFPro-Bold",
+    fontFamily: "SFPro-SemiBold",
   },
   time: {
     margin: 10,
