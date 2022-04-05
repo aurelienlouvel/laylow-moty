@@ -11,12 +11,14 @@ import {
   Linking,
   Pressable,
 } from "react-native";
-import { Colors, BackgroundColor } from "../theme/Colors";
+import { Colors, BackgroundColor, Color } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
+import ButtonStyles from "../theme/ButtonStyles";
 import { Padding } from "../theme/Spacing";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 const Images = [
   require("../assets/img/albums/mercy.jpg"),
@@ -107,35 +109,32 @@ export default function Album(props) {
           </Text>
           <View style={Padding(16)}>
             <Pressable
-              style={TextStyles.button}
+              style={ButtonStyles.music}
               onPress={() => Linking.openURL(data.spotify)}
             >
-              <Text style={[[TextStyles.buttonContent], { color: "#1DB954" }]}>
-                Écouter sur Spotify
-              </Text>
+              <Text style={ButtonStyles.textMusic}>Écouter sur Spotify</Text>
               <MaterialCommunityIcons
+                style={ButtonStyles.icon}
                 name={"spotify"}
-                size={32}
+                size={26}
                 color={"#1DB954"}
               />
             </Pressable>
             <Pressable
-              style={TextStyles.button}
+              style={ButtonStyles.music}
               onPress={() => Linking.openURL(data.apple)}
             >
-              <Text style={[[TextStyles.buttonContent], { color: "#f94c57" }]}>
+              <Text style={ButtonStyles.textMusic}>
                 Écouter sur Apple Music
               </Text>
-              <Fontisto name={"applemusic"} size={32} color={"#f94c57"} />
+              <Fontisto name={"applemusic"} size={26} color={"#f94c57"} />
             </Pressable>
             <Pressable
-              style={TextStyles.button}
+              style={ButtonStyles.music}
               onPress={() => Linking.openURL(data.deezer)}
             >
-              <Text style={[[TextStyles.buttonContent], { color: "#00C7F2" }]}>
-                Écouter sur Deezer
-              </Text>
-              {/* <FontAwesomeIcon icon={"deezer"} size={32} color={"purple"} /> */}
+              <Text style={ButtonStyles.textMusic}>Écouter sur Deezer</Text>
+              <FontAwesome5 name="deezer" brand size={26} color={"#00c7f2"} />
             </Pressable>
           </View>
         </View>

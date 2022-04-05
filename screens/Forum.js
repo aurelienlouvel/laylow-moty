@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
 import MessageList from "../containers/MessageList";
-import { Colors, BackgroundColor } from "../theme/Colors";
+import Colors, { BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import { Padding } from "../theme/Spacing";
 import { useNavigation } from "@react-navigation/native";

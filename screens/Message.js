@@ -1,138 +1,107 @@
-import React, { useEffect, useState, Component } from "react";
+import React from "react";
 import {
   ScrollView,
-  StyleSheet,
   Text,
   View,
-  Button,
   TextInput,
-  TouchableOpacity,
+  Pressable,
+  StyleSheet,
 } from "react-native";
+import { useForm, Controller } from "react-hook-form";
+import Colors, { BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
+import ButtonStyles from "../theme/ButtonStyles";
+import { Padding } from "../theme/Spacing";
+import { Ionicons } from "@expo/vector-icons";
 
-// class Message extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       pseudo: "",
-//       message: "",
-//     };
-//   }
+export default function Message(props) {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+    },
+  });
+  const onSubmit = (data) => console.log(data);
 
-//   updateValue(text, field) {
-//     if (field == "pseudo") {
-//       this.setState({
-//         pseudo: text,
-//       });
-//     } else if (field == "message") {
-//       this.setState({
-//         message: text,
-//       });
-//     }
-//   }
+  return (
+    <View style={[BackgroundColor(Colors.noir), { flex: 1 }]}>
+      <Ionicons
+        style={[Padding(16), { marginTop: 24 }]}
+        name={"chevron-back"}
+        size={32}
+        color={Colors.blanc}
+        onPress={() => props.navigation.goBack()}
+      />
+      <View style={Padding(32, "x")}>
+        <Text style={TextStyles.h1}>Message</Text>
+        <View style={styles.container}>
+          <Text style={[TextStyles.h3, { marginVertical: 12 }]}>
+            Pseudonyme
+          </Text>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              maxLength: 30,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+              />
+            )}
+            name="pseudo"
+          />
+          {errors.pseudo && <Text style={TextStyles.p}>Pseudonyme requis</Text>}
+        </View>
 
-//   submit() {
-//     let collection = {};
-//     (collection.pseudo = this.state.pseudo),
-//       (collection.message = this.state.message);
-//     console.warn(collection);
-
-//     var url = "https://www.neomiannay.fr/php-laylow/insert_message.php";
-
-//     fetch(url, {
-//       method: "POST",
-//       body: JSON.stringify(collection),
-//       // body: JSON.stringify({
-//       //   pseudo: this.state.pseudo,
-//       //   message: this.state.message,
-//       // }),
-//       header: new Headers({
-//         "Content-Type": "application/json",
-//       }),
-//     })
-//       .then((res) => res.json())
-//       .catch((error) => console.error("Error:", error))
-//       .then((response) => console.log("Success:", response));
-//   }
-
-//   render() {
-//     return (
-//       <ScrollView>
-//         <View style={styles.container}>
-//           <Text style={TextStyles.h2}>Message</Text>
-
-//           {/* ------------------------------------- */}
-//           {/* Formulaire */}
-//           {/* ------------------------------------- */}
-//           <TextInput
-//             placeholder="Mettez votre nom"
-//             placeholderTextColor="#6F6F6F"
-//             style={styles.input}
-//             name="pseudo"
-//             onChangeText={(text) => this.updateValue(text, "pseudo")}
-//           />
-
-//           <TextInput
-//             multiline={true}
-//             numberOfLines={10}
-//             placeholder="Mettez votre message ici"
-//             placeholderTextColor="#6F6F6F"
-//             style={styles.input}
-//             onChangeText={(text) => this.updateValue(text, "message")}
-//             name="message"
-//           />
-
-//           {/* bouton envoyer  */}
-//           <TouchableOpacity style={styles.button} onPress={() => this.submit()}>
-//             <Text style={styles.buttonText}>Envoyer</Text>
-//           </TouchableOpacity>
-
-//           <Button
-//             title="Fermer la fenÃªtre"
-//             onPress={() => this.props.navigation.goBack()}
-//           />
-//         </View>
-//       </ScrollView>
-//     );
-//   }
-// }
+        <View style={styles.container}>
+          <Text style={[TextStyles.h3, { marginVertical: 12 }]}>Message</Text>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+              maxLength: 255,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
+                style={styles.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                multiline={true}
+                numberOfLines={6}
+              />
+            )}
+            name="message"
+          />
+          {errors.message && <Text style={TextStyles.p}>Message requis</Text>}
+        </View>
+      </View>
+      <Pressable style={ButtonStyles.primary} onPress={handleSubmit(onSubmit)}>
+        <Text style={ButtonStyles.text}>POSTER</Text>
+      </Pressable>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    marginTop: 30,
-    backgroundColor: "#272727",
-    flex: 1,
-    justifyContent: "center",
-    padding: 20,
+    flexDirection: "column",
+    marginVertical: 12,
+    paddingVertical: 6,
+    borderBottomWidth: 1,
+    borderColor: "rgba(158, 150, 150, .5)",
   },
-  // text: {
-  //   color: "#fff",
-  //   fontSize: 20,
-  //   fontWeight: "bold",
-  //   paddingTop: 20,
-  //   paddingLeft: 10,
-  // },
   input: {
-    borderColor: "#6F6F6F",
-    color: "#6F6F6F",
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: "#1A1A1A",
-    borderRadius: 3,
-  },
-  button: {
-    backgroundColor: "#970203",
-    padding: 20,
-    marginTop: 20,
-    borderRadius: 50,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
+    color: Colors.or,
+    textAlignVertical: "bottom",
+    fontFamily: "SFPro-Regular",
   },
 });
