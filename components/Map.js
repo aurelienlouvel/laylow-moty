@@ -69,7 +69,7 @@ export default function Map() {
         provider={PROVIDER_GOOGLE}
       >
         <MapView.Marker
-          image={require("../assets/img/icons/current.png")}
+          image={require("../assets/icons/current.png")}
           coordinate={{
             latitude: region.latitude,
             longitude: region.longitude,
@@ -80,7 +80,7 @@ export default function Map() {
           let longitude = parseFloat(concert.coordonnees.split(",")[1]);
           return (
             <MapView.Marker
-              image={require("../assets/img/icons/marker.png")}
+              image={require("../assets/icons/marker.png")}
               coordinate={{
                 latitude: latitude,
                 longitude: longitude,
