@@ -112,13 +112,14 @@ export default function Album(props) {
           </Text>
           <View style={Padding(16)}>
             <Pressable
-              style={[ButtonStyles.music, { backgroundColor: "#00dc4d" }]}
+              style={[ButtonStyles.music, { backgroundColor: "#06B343" }]}
               onPress={() => Linking.openURL(data.spotify)}
             >
               <Text style={[ButtonStyles.textMusic, { color: Colors.blanc }]}>
                 Écouter sur Spotify
               </Text>
               <FontAwesome5
+                style={ButtonStyles.iconMusic}
                 name={"spotify"}
                 size={26}
                 color={Colors.blanc}
@@ -133,6 +134,7 @@ export default function Album(props) {
                 Écouter sur Apple Music
               </Text>
               <FontAwesome5
+                style={ButtonStyles.iconMusic}
                 name={"apple"}
                 size={26}
                 color={Colors.noir}
@@ -140,13 +142,18 @@ export default function Album(props) {
               />
             </Pressable>
             <Pressable
-              style={[ButtonStyles.music, BackgroundColor("#062444")]}
+              style={[ButtonStyles.music, BackgroundColor("#002D5E")]}
               onPress={() => Linking.openURL(data.deezer)}
             >
               <Text style={[ButtonStyles.textMusic, { color: Colors.blanc }]}>
                 Écouter sur Deezer
               </Text>
-              <SvgXml xml={xml} width="26px" height="26px" />
+              <SvgXml
+                style={ButtonStyles.iconMusic}
+                xml={xml}
+                width="26px"
+                height="26px"
+              />
             </Pressable>
           </View>
         </View>

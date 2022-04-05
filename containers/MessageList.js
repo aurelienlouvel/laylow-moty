@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { View, ActivityIndicator, Text, FlatList } from "react-native";
 import MessageCard from "../components/MessageCard";
+import { Margin } from "../theme/Spacing";
 
-// --------------------------------------------------------
-// Page PHP pour récupérer les données pseudo et message
-// --------------------------------------------------------
 export default function MessageList() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const getData = async () => {
-    try {
-      const response = await fetch(
-        "https://www.neomiannay.fr/php-laylow/forum.php"
-      );
-      const json = await response.json();
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useFocusEffect(
+    React.useCallback(() => {
+      const getData = async () => {
+        try {
+          const response = await fetch(
+            "https://www.neomiannay.fr/php-laylow/forum.php"
+          );
+          const json = await response.json();
+          setData(json);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      };
 
-  useEffect(() => {
-    getData();
-  }, []);
+      getData();
+    }, [])
+  );
 
   return (
     <View>
@@ -33,8 +34,10 @@ export default function MessageList() {
         <ActivityIndicator />
       ) : (
         <FlatList
+          style={{ marginBottom: 50 }}
           data={data}
           keyExtractor={(item) => item.id}
+          inverted={true}
           renderItem={({ item }) => (
             <MessageCard
               id={item.id}
@@ -42,8 +45,7 @@ export default function MessageList() {
               message={item.message}
             />
           )}
-          // horizontal
-          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
         />
       )}
     </View>

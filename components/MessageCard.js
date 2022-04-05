@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginVertical: 12,
-    paddingVertical: 20,
+    marginVertical: 8,
+    paddingVertical: 8,
     borderBottomWidth: 1,
     borderColor: "rgba(158, 150, 150, .5)",
   },
