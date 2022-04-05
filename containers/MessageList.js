@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { View, ActivityIndicator, Text, FlatList } from "react-native";
 import MessageCard from "../components/MessageCard";
-import { Margin } from "../theme/Spacing";
 
 export default function MessageList() {
   const [isLoading, setLoading] = useState(true);

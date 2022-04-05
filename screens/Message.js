@@ -16,7 +16,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
 function Submit(props, form) {
-  console.log(form);
   const data = new FormData();
   data.append("pseudo", form.pseudo);
   data.append("message", form.message);
