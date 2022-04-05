@@ -13,6 +13,25 @@ import TextStyles from "../theme/TextStyles";
 import ButtonStyles from "../theme/ButtonStyles";
 import { Padding } from "../theme/Spacing";
 import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+
+function Submit(props, form) {
+  console.log(form);
+  const data = new FormData();
+  data.append("pseudo", form.pseudo);
+  data.append("message", form.message);
+
+  fetch("https://www.neomiannay.fr/php-laylow/insert_message.php", {
+    method: "POST",
+    body: data,
+    header: new Headers({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then(() => props.navigation.navigate("Forum"))
+    .catch((error) => console.error("Error:", error))
+    .then((response) => console.log("Success:", response));
+}
 
 export default function Message(props) {
   const {
@@ -21,11 +40,11 @@ export default function Message(props) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      pseudo: "",
+      message: "",
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => Submit(props, data);
 
   return (
     <View style={[BackgroundColor(Colors.noir), { flex: 1 }]}>
@@ -58,7 +77,9 @@ export default function Message(props) {
             )}
             name="pseudo"
           />
-          {errors.pseudo && <Text style={TextStyles.p}>Pseudonyme requis</Text>}
+          {errors.pseudo && (
+            <Text style={TextStyles.p}>Pseudonyme invalide</Text>
+          )}
         </View>
 
         <View style={styles.container}>
@@ -81,11 +102,17 @@ export default function Message(props) {
             )}
             name="message"
           />
-          {errors.message && <Text style={TextStyles.p}>Message requis</Text>}
+          {errors.message && <Text style={TextStyles.p}>Message invalide</Text>}
         </View>
       </View>
-      <Pressable style={ButtonStyles.primary} onPress={handleSubmit(onSubmit)}>
-        <Text style={ButtonStyles.text}>POSTER</Text>
+      <Pressable style={ButtonStyles.fixed} onPress={handleSubmit(onSubmit)}>
+        <Text style={ButtonStyles.text}>Poster mon message</Text>
+        <FontAwesome
+          style={ButtonStyles.icon}
+          name={"send"}
+          size={22}
+          color={Colors.blanc}
+        />
       </Pressable>
     </View>
   );
@@ -101,7 +128,7 @@ const styles = StyleSheet.create({
   },
   input: {
     color: Colors.or,
-    textAlignVertical: "bottom",
+    textAlignVertical: "top",
     fontFamily: "SFPro-Regular",
   },
 });

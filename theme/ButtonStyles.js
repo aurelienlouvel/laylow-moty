@@ -1,7 +1,7 @@
 import Colors from "./Colors";
 
 export default {
-  primary: {
+  fixed: {
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -9,13 +9,15 @@ export default {
     margin: 24,
     backgroundColor: Colors.rouge,
     height: 52,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  secondary: {
+  normal: {
     margin: 24,
     backgroundColor: Colors.rouge,
     height: 52,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -30,13 +32,17 @@ export default {
     color: Colors.blanc,
     fontSize: 18,
     fontFamily: "SFPro-Bold",
+    marginHorizontal: 8,
   },
   textMusic: {
     fontSize: 18,
     fontFamily: "SFPro-Bold",
-    marginHorizontal: 8,
+    marginHorizontal: 4,
   },
   icon: {
     marginHorizontal: 8,
+  },
+  iconMusic: {
+    marginHorizontal: 4,
   },
 };

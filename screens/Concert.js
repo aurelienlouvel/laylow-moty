@@ -13,6 +13,7 @@ import { Colors, BackgroundColor } from "../theme/Colors";
 import TextStyles from "../theme/TextStyles";
 import ButtonStyles from "../theme/ButtonStyles";
 import { Padding } from "../theme/Spacing";
+import { FontAwesome } from "@expo/vector-icons";
 import moment from "moment";
 import "moment/locale/fr";
 
@@ -88,10 +89,16 @@ export default function Album(props) {
             </View>
           </View>
           <Pressable
-            style={ButtonStyles.secondary}
+            style={ButtonStyles.normal}
             onPress={() => Linking.openURL(data.ticket)}
           >
-            <Text style={ButtonStyles.text}>ACHETER UN TICKET</Text>
+            <Text style={ButtonStyles.text}>Acheter un ticket</Text>
+            <FontAwesome
+              style={ButtonStyles.icon}
+              name={"ticket"}
+              size={22}
+              color={Colors.blanc}
+            />
           </Pressable>
         </View>
       )}
