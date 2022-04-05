@@ -20,27 +20,23 @@ export default {
     justifyContent: "center",
   },
   music: {
+    marginVertical: 8,
     paddingVertical: 16,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    borderTopWidth: 1,
-    // borderBottomWidth: 1,
-    borderColor: "rgba(158, 150, 150, .5)",
   },
   text: {
     color: Colors.blanc,
     fontSize: 18,
-    fontFamily: "IvyMode-Bold",
+    fontFamily: "SFPro-Bold",
   },
   textMusic: {
-    color: "#1DB954",
-    color: Colors.blanc,
     fontSize: 18,
-    fontFamily: "IvyMode-SemiBold",
-    marginHorizontal: 6,
+    fontFamily: "SFPro-Bold",
+    marginHorizontal: 8,
   },
   icon: {
-    marginHorizontal: 6,
+    marginHorizontal: 8,
   },
 };
