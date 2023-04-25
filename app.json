@@ -2,6 +2,7 @@
   "expo": {
     "name": "Laylow MOTY",
     "slug": "laylow-moty",
+    "description": "Github: https://github.com/LAYLOW-MOTY/laylow-moty",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",
@@ -35,7 +36,6 @@
     },
     "web": {
       "favicon": "./assets/icons/favicon.png"
-    },
-    "description": ""
+    }
   }
 }
